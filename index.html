@@ -10,8 +10,14 @@
             font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
             margin: 0;
             padding: 40px 20px;
-            background-color: #f7f7f7;
-            color: #333;
+            /* ★修正点1: 背景画像を適用するCSSを追加★ */
+            background-image: url('background.png'); /* ★【要変更】: ここを実際のファイル名に修正！★ */
+            background-size: cover; /* 画面全体を覆うように拡大・縮小 */
+            background-attachment: fixed; /* スクロールしても背景を固定 */
+            background-position: center center; /* 背景画像を中央に配置 */
+            background-color: #f7f7f7; /* 画像が表示されない場合の代替色 */
+            
+            color: #333; /* デフォルトの文字色 */
             text-align: center;
         }
 
@@ -19,16 +25,19 @@
         .container {
             max-width: 960px;
             margin: 0 auto;
-            background-color: #fff;
+            /* 背景画像が見やすいよう、メインコンテナの背景に少し透明度を加えています */
+            background-color: rgba(255, 255, 255, 0.9); /* 白に90%の透明度 */
             padding: 40px 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 影を濃くして背景から浮き立たせる */
+            /* ★追加: メインコンテナ内の文字色を調整する場合（任意）★ */
+            /* color: #111; */ 
         }
 
         /* --- タイトル --- */
         h1 {
             font-size: 2.2rem;
-            color: #004c99; /* ポスターをイメージした青 */
+            color: #004c99;
             margin-bottom: 5px;
             font-weight: 700;
         }
@@ -60,26 +69,23 @@
         /* --- 星印（ピン）の共通スタイル --- */
         .star-pin {
             position: absolute;
-            color: red; /* 星の色 */
-            font-size: 2.5rem; /* 星の大きさ */
-            transform: translate(-50%, -100%); /* 星の先端が指定位置に来るように調整 */
+            color: red;
+            font-size: 2.5rem;
+            transform: translate(-50%, -100%);
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-            /* ★追加: リンク機能のための設定★ */
-            cursor: pointer; /* マウスカーソルをポインターにする */
-            z-index: 10; /* 他の要素より手前に表示 */
-            text-decoration: none; /* リンクの下線を消す */
-            display: block; /* リンクとして動作するようにブロック化 */
+            cursor: pointer;
+            z-index: 10;
+            text-decoration: none;
+            display: block;
         }
 
         /* **【重要：ピン位置調整ポイント】** */
-        /* 地図に合わせて、'top'と'left'のパーセンテージを調整してください */
-
-        #pin-tokyo { top: 60%; left: 65%; } /* 東京付近のダミー位置 */
-        #pin-osaka { top: 65%; left: 50%; } /* 大阪付近のダミー位置 */
-        #pin-fukuoka { top: 75%; left: 25%; } /* 福岡付近のダミー位置 */
-        #pin-sapporo { top: 20%; left: 80%; } /* 札幌付近のダミー位置 */
-        #pin-nagoya { top: 63%; left: 58%; } /* 名古屋付近のダミー位置 */
-        #pin-sendai { top: 45%; left: 75%; } /* 仙台付近のダミー位置 */
+        #pin-tokyo { top: 60%; left: 65%; }
+        #pin-osaka { top: 65%; left: 50%; }
+        #pin-fukuoka { top: 75%; left: 25%; }
+        #pin-sapporo { top: 20%; left: 80%; }
+        #pin-nagoya { top: 63%; left: 58%; }
+        #pin-sendai { top: 45%; left: 75%; }
 
         /* --- リストセクション --- */
         .store-list-section {
@@ -100,12 +106,12 @@
             padding: 0;
             display: flex;
             flex-wrap: wrap;
-            gap: 15px 30px; /* 行間と列間 */
+            gap: 15px 30px;
             font-size: 1rem;
         }
 
         .store-list li {
-            width: calc(50% - 15px); /* 2列表示 */
+            width: calc(50% - 15px);
             line-height: 1.8;
             border-left: 3px solid #ccc;
             padding-left: 10px;
@@ -117,7 +123,7 @@
             .subtitle { font-size: 1.2rem; }
             .container { padding: 20px 15px; }
             .store-list li {
-                width: 100%; /* スマホでは1列表示 */
+                width: 100%;
             }
         }
     </style>
@@ -129,14 +135,15 @@
         <p class="subtitle">ポスター配布マップ</p>
 
         <div class="map-section">
-            <img src="japan map.png" alt="日本地図"> <a href="#" id="pin-tokyo" class="star-pin">★</a>
+            <img src="japan map.png" alt="日本地図">
+            
+            <a href="#" id="pin-tokyo" class="star-pin">★</a>
             <a href="#" id="pin-osaka" class="star-pin">★</a>
             <a href="#" id="pin-fukuoka" class="star-pin">★</a>
             <a href="#" id="pin-sapporo" class="star-pin">★</a>
             <a href="#" id="pin-nagoya" class="star-pin">★</a>
             <a href="#" id="pin-sendai" class="star-pin">★</a>
-
-            </div>
+        </div>
 
         <div class="store-list-section">
             <h2>ポスター配布先店舗一覧</h2>
@@ -158,7 +165,6 @@
 
     <script>
         // 店舗IDと対応するURLをここで定義します
-        // **【重要：URL編集ポイント】**：実際の店舗のウェブサイトURLに置き換えてください
         const storeUrls = {
             'pin-tokyo': 'https://example.com/tokyo-store',
             'pin-osaka': 'https://example.com/osaka-store',
@@ -178,7 +184,6 @@
 
                 if (url) {
                     pin.addEventListener('click', () => {
-                        // クリックしたら新しいタブでURLを開く
                         window.open(url, '_blank');
                     });
                 }
