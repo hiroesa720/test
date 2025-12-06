@@ -10,12 +10,10 @@
             font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
             margin: 0;
             padding: 40px 20px;
-            /* 背景画像の設定 */
-            background-image: url('background2.png');
-            /* ★修正点: 背景画像を繰り返し表示する設定に変更★ */
-            background-repeat: repeat; 
-            background-position: top left; /* 左上から画像をスタート */
-            background-color: #f7f7f7; 
+            
+            /* ★修正点1: 背景を左から黄色→白色のグラデーションに変更★ */
+            background: linear-gradient(to right, #FFD700, #FFFFFF); 
+            background-color: #f7f7f7; /* グラデーション非対応ブラウザの代替色 */
             
             color: #333;
             text-align: center;
@@ -25,10 +23,11 @@
         .container {
             max-width: 960px;
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.9);
+            /* 背景がグラデーションになったため、コンテナの透明度を削除 */
+            background-color: #fff;
             padding: 40px 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
         }
 
         /* --- タイトル --- */
@@ -68,7 +67,7 @@
         .star-pin {
             position: absolute;
             color: red;
-            font-size: 2.5rem;
+            font-size: 2.5rem; /* PC/スマホでこのサイズに統一 */
             transform: translate(-50%, -100%);
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
             cursor: pointer;
@@ -129,9 +128,8 @@
                 width: 100%; 
             }
             
-            .star-pin {
-                font-size: 2rem;
-            }
+            /* ★修正点2: スマホでの星のサイズ調整を削除し、PCと統一★ */
+            /* .star-pin { font-size: 2rem; } */ 
         }
     </style>
 </head>
@@ -142,7 +140,7 @@
         <p class="subtitle">ポスター配布マップ</p>
 
         <div class="map-section">
-            <img src="japan map.png" alt="日本地図">
+            <img src="japan2 map.png" alt="日本地図">
             
             <a href="#" id="pin-tokyo" class="star-pin">★</a>
             <a href="#" id="pin-osaka" class="star-pin">★</a>
