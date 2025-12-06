@@ -10,14 +10,14 @@
             font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
             margin: 0;
             padding: 40px 20px;
-            /* ★修正点1: 背景画像を適用するCSSを追加★ */
-            background-image: url('background.png'); /* ★【要変更】: ここを実際のファイル名に修正！★ */
-            background-size: cover; /* 画面全体を覆うように拡大・縮小 */
-            background-attachment: fixed; /* スクロールしても背景を固定 */
-            background-position: center center; /* 背景画像を中央に配置 */
-            background-color: #f7f7f7; /* 画像が表示されない場合の代替色 */
+            /* 背景画像の設定 */
+            background-image: url('background.jpg'); /* ★【要変更】: ここを実際のファイル名に修正！★ */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center center;
+            background-color: #f7f7f7; 
             
-            color: #333; /* デフォルトの文字色 */
+            color: #333;
             text-align: center;
         }
 
@@ -25,13 +25,10 @@
         .container {
             max-width: 960px;
             margin: 0 auto;
-            /* 背景画像が見やすいよう、メインコンテナの背景に少し透明度を加えています */
-            background-color: rgba(255, 255, 255, 0.9); /* 白に90%の透明度 */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 40px 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 影を濃くして背景から浮き立たせる */
-            /* ★追加: メインコンテナ内の文字色を調整する場合（任意）★ */
-            /* color: #111; */ 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         /* --- タイトル --- */
@@ -53,6 +50,8 @@
         /* --- マップセクション --- */
         .map-section {
             position: relative;
+            /* ★修正: 最大幅を100%にし、スマホで画面幅いっぱいに広がるようにする */
+            max-width: 100%; 
             display: inline-block;
             margin-bottom: 40px;
             border: 1px solid #ddd;
@@ -70,7 +69,7 @@
         .star-pin {
             position: absolute;
             color: red;
-            font-size: 2.5rem;
+            font-size: 2.5rem; /* デフォルトのPCサイズ */
             transform: translate(-50%, -100%);
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
             cursor: pointer;
@@ -117,13 +116,25 @@
             padding-left: 10px;
         }
 
-        /* --- レスポンシブ対応 --- */
+        /* --- レスポンシブ対応 (スマホ用) --- */
         @media (max-width: 600px) {
+            /* ★修正1: スマホでマージン・パディングを調整し、端に寄りすぎないようにする★ */
+            body { padding: 20px 10px; }
+            .container { 
+                padding: 20px 15px; 
+            }
+            
             h1 { font-size: 1.8rem; }
             .subtitle { font-size: 1.2rem; }
-            .container { padding: 20px 15px; }
+            
+            /* ★修正2: リストを縦一列（100%幅）にする★ */
             .store-list li {
-                width: 100%;
+                width: 100%; 
+            }
+            
+            /* ★修正3: スマホでピンのサイズを少し小さくする★ */
+            .star-pin {
+                font-size: 2rem;
             }
         }
     </style>
