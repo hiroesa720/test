@@ -11,10 +11,10 @@
             margin: 0;
             padding: 40px 20px;
             /* 背景画像の設定 */
-            background-image: url('background.png'); /* ★【要変更】: ここを実際のファイル名に修正！★ */
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center center;
+            background-image: url('background2.png');
+            /* ★修正点: 背景画像を繰り返し表示する設定に変更★ */
+            background-repeat: repeat; 
+            background-position: top left; /* 左上から画像をスタート */
             background-color: #f7f7f7; 
             
             color: #333;
@@ -50,7 +50,6 @@
         /* --- マップセクション --- */
         .map-section {
             position: relative;
-            /* ★修正: 最大幅を100%にし、スマホで画面幅いっぱいに広がるようにする */
             max-width: 100%; 
             display: inline-block;
             margin-bottom: 40px;
@@ -69,7 +68,7 @@
         .star-pin {
             position: absolute;
             color: red;
-            font-size: 2.5rem; /* デフォルトのPCサイズ */
+            font-size: 2.5rem;
             transform: translate(-50%, -100%);
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
             cursor: pointer;
@@ -118,7 +117,6 @@
 
         /* --- レスポンシブ対応 (スマホ用) --- */
         @media (max-width: 600px) {
-            /* ★修正1: スマホでマージン・パディングを調整し、端に寄りすぎないようにする★ */
             body { padding: 20px 10px; }
             .container { 
                 padding: 20px 15px; 
@@ -127,12 +125,10 @@
             h1 { font-size: 1.8rem; }
             .subtitle { font-size: 1.2rem; }
             
-            /* ★修正2: リストを縦一列（100%幅）にする★ */
             .store-list li {
                 width: 100%; 
             }
             
-            /* ★修正3: スマホでピンのサイズを少し小さくする★ */
             .star-pin {
                 font-size: 2rem;
             }
@@ -146,7 +142,7 @@
         <p class="subtitle">ポスター配布マップ</p>
 
         <div class="map-section">
-            <img src="japan map2.png" alt="日本地図">
+            <img src="japan map.png" alt="日本地図">
             
             <a href="#" id="pin-tokyo" class="star-pin">★</a>
             <a href="#" id="pin-osaka" class="star-pin">★</a>
