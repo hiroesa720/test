@@ -55,8 +55,6 @@
             width: 100%;
             height: auto;
             display: block;
-            /* **【重要：画像差し替えポイント】** */
-            /* 用意された日本地図の画像ファイル名に変更してください */
         }
 
         /* --- 星印（ピン）の共通スタイル --- */
@@ -66,6 +64,11 @@
             font-size: 2.5rem; /* 星の大きさ */
             transform: translate(-50%, -100%); /* 星の先端が指定位置に来るように調整 */
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            /* ★追加: リンク機能のための設定★ */
+            cursor: pointer; /* マウスカーソルをポインターにする */
+            z-index: 10; /* 他の要素より手前に表示 */
+            text-decoration: none; /* リンクの下線を消す */
+            display: block; /* リンクとして動作するようにブロック化 */
         }
 
         /* **【重要：ピン位置調整ポイント】** */
@@ -126,12 +129,12 @@
         <p class="subtitle">ポスター配布マップ</p>
 
         <div class="map-section">
-            <img src="japan map.png" alt="日本地図"> <div id="pin-tokyo" class="star-pin">★</div>
-            <div id="pin-osaka" class="star-pin">★</div>
-            <div id="pin-fukuoka" class="star-pin">★</div>
-            <div id="pin-sapporo" class="star-pin">★</div>
-            <div id="pin-nagoya" class="star-pin">★</div>
-            <div id="pin-sendai" class="star-pin">★</div>
+            <img src="japan map.png" alt="日本地図"> <a href="#" id="pin-tokyo" class="star-pin">★</a>
+            <a href="#" id="pin-osaka" class="star-pin">★</a>
+            <a href="#" id="pin-fukuoka" class="star-pin">★</a>
+            <a href="#" id="pin-sapporo" class="star-pin">★</a>
+            <a href="#" id="pin-nagoya" class="star-pin">★</a>
+            <a href="#" id="pin-sendai" class="star-pin">★</a>
 
             </div>
 
@@ -149,9 +152,39 @@
                 <li>広島県/福山市 煙突掃除屋の店</li>
                 <li>福岡県/博多区 光る絵本カフェ</li>
                 <li>沖縄県/那覇市 最高の友達の家</li>
-                </ul>
+            </ul>
         </div>
     </div>
 
+    <script>
+        // 店舗IDと対応するURLをここで定義します
+        // **【重要：URL編集ポイント】**：実際の店舗のウェブサイトURLに置き換えてください
+        const storeUrls = {
+            'pin-tokyo': 'https://example.com/tokyo-store',
+            'pin-osaka': 'https://example.com/osaka-store',
+            'pin-fukuoka': 'https://example.com/fukuoka-store',
+            'pin-sapporo': 'https://example.com/sapporo-store',
+            'pin-nagoya': 'https://example.com/nagoya-store',
+            'pin-sendai': 'https://example.com/sendai-store'
+        };
+
+        // 各ピンをクリック可能にするための処理
+        document.addEventListener('DOMContentLoaded', () => {
+            const pins = document.querySelectorAll('.star-pin');
+
+            pins.forEach(pin => {
+                const pinId = pin.id;
+                const url = storeUrls[pinId];
+
+                if (url) {
+                    pin.addEventListener('click', () => {
+                        // クリックしたら新しいタブでURLを開く
+                        window.open(url, '_blank');
+                    });
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
